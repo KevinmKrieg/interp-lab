@@ -5,6 +5,9 @@ model:
   device: cpu
 data:
   n_examples: 48
+  patching_dataset: text_induction
+  patching_examples: 8
+  min_clean_margin: 0.05
   seq_len: 7
   layer_for_sae: 6
   clean_prompt: "A B C A B"

@@ -1,9 +1,13 @@
 # Activation Patching Case Study
 
-Clean prompt: `A B C A B` predicts ` C`.
+Evaluated cases: `6`
 
-Corrupt prompt: `A B C A D` suppresses ` C` in favor of ` D`.
+Clean prompt: `Mary had a little lamb. Mary had a little` predicts ` lamb`.
 
-Best patch: layer `11`, position `4` (` B`), recovering `6.35` of the clean logit difference.
+Corrupt prompt: `Mary had a little lamb. Mary had a small` suppresses ` lamb` in favor of ` house`.
 
-Interpretation: patching this real-model residual-stream site strongly shifts the target logit difference toward the clean prompt behavior. This is a causal localization result, not yet a complete circuit explanation.
+Best patch: layer `0`, position `9` (` little`), recovering `1.00` of the clean logit difference.
+
+Mean best-patch recovery across cases: `1.00`.
+
+Interpretation: GPT-2 patching over a small repeated-text prompt batch finds residual-stream sites that shift the target logit difference toward the clean prompt behavior. This is a causal localization result, not yet a complete circuit explanation.

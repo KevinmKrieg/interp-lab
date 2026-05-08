@@ -1,6 +1,6 @@
 # interp-lab
 
-`interp-lab` is a small mechanistic interpretability workbench for transformer language models. The default path is intentionally local-first: it ships with a deterministic toy transformer-like backend so the full pipeline can run without downloading model weights. A Hugging Face GPT-2 backend is also available for real-model activation patching and feature experiments.
+`interp-lab` is a small mechanistic interpretability workbench for transformer language models. The repo includes a real GPT-2 path for activation patching and feature experiments, plus a deterministic toy backend for fast local smoke tests.
 
 The project is organized around three resume-visible artifacts:
 
@@ -10,7 +10,15 @@ The project is organized around three resume-visible artifacts:
 
 The NLA module is an inspired toy replica, not a reproduction of Anthropic's RL-based Natural Language Autoencoder training setup.
 
-## Quickstart
+## Key Result
+
+The GPT-2 backend runs a small repeated-text prompt batch and patches residual-stream activations from clean prompts into corrupted prompts. The current checked-in run finds a residual-stream site that restores the clean target-token preference.
+
+![GPT-2 activation patching heatmap](reports/gpt2/assets/patching_heatmap.png)
+
+See the generated writeup at [`reports/gpt2/patching_case_study.md`](reports/gpt2/patching_case_study.md), with companion feature and NLA cards in [`reports/gpt2/`](reports/gpt2/).
+
+## Quickstart: Toy Smoke Path
 
 ```bash
 python3 -m pip install -e ".[dev]"
@@ -31,7 +39,7 @@ serve-browser --port 8000
 
 ## Real GPT-2 Backend
 
-The real-model path uses Hugging Face `AutoModelForCausalLM` hooks. It may download GPT-2 weights the first time it runs.
+The real-model path uses Hugging Face `AutoModelForCausalLM` hooks over a repeated-text prompt batch. It may download GPT-2 weights the first time it runs.
 
 ```bash
 python3 -m pip install -e ".[models,dev]"
@@ -45,11 +53,17 @@ serve-browser --config configs/gpt2_induction.yaml --build-only
 
 ## Example Outputs
 
-### Activation patching
+### GPT-2 activation patching
+
+![GPT-2 activation patching heatmap](reports/gpt2/assets/patching_heatmap.png)
+
+The GPT-2 heatmap shows logit-difference recovery for the strongest case in the current repeated-text prompt batch. Aggregate metrics are saved in [`reports/gpt2/patching_summary.json`](reports/gpt2/patching_summary.json).
+
+### Toy activation patching
 
 ![Activation patching heatmap](reports/assets/patching_heatmap.png)
 
-The heatmap shows logit-difference recovery when clean residual-stream activations are patched into a corrupted prompt. In the toy setup, late final-position activations carry the copy signal needed to recover the held-out source token.
+The toy heatmap shows the same pipeline on a deterministic backend used for CI and fast local debugging.
 
 ### Attention pattern
 
@@ -84,10 +98,10 @@ The NLA-inspired module maps an activation to constrained text labels, then reco
 
 | Artifact | What it demonstrates | Output |
 | --- | --- | --- |
-| Patching heatmap | Causal localization of a copy signal | `reports/assets/patching_heatmap.png` |
-| Attention pattern | A readable induction-style attention pattern | `reports/assets/attention_pattern.png` |
-| SAE cards | Sparse features with top activating contexts | `reports/sae_feature_cards.md` |
-| Tiny NLA card | Human-readable activation bottleneck and reconstruction metric | `reports/nla_toy_card.md` |
+| GPT-2 patching heatmap | Real-model causal localization over repeated-text prompts | `reports/gpt2/assets/patching_heatmap.png` |
+| GPT-2 SAE cards | Sparse features with top activating contexts | `reports/gpt2/sae_feature_cards.md` |
+| GPT-2 tiny NLA card | Human-readable activation bottleneck and reconstruction metric | `reports/gpt2/nla_toy_card.md` |
+| Toy smoke reports | Fully local, deterministic CI path | `reports/index.html` |
 
 ## Project Layout
 

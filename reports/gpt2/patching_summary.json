@@ -1,15 +1,27 @@
 {
   "backend": "hf",
-  "clean_prompt": "A B C A B",
-  "corrupt_prompt": "A B C A D",
-  "correct_token": " C",
-  "incorrect_token": " D",
-  "clean_logit_diff": -0.48368072509765625,
-  "corrupt_logit_diff": -0.591400146484375,
+  "n_cases": 6,
+  "n_skipped_cases": 1,
+  "clean_prompt": "Mary had a little lamb. Mary had a little",
+  "corrupt_prompt": "Mary had a little lamb. Mary had a small",
+  "correct_token": " lamb",
+  "incorrect_token": " house",
+  "clean_logit_diff": 7.412727355957031,
+  "corrupt_logit_diff": 5.927589416503906,
+  "mean_best_patch_recovery": 1.0,
+  "median_best_patch_recovery": 1.0,
+  "skipped_cases": [
+    {
+      "clean_prompt": "Once upon a time there was. Once upon a time",
+      "reason": "clean logit margin does not exceed corrupt margin",
+      "clean_logit_diff": 2.943603515625,
+      "corrupt_logit_diff": 4.427085876464844
+    }
+  ],
   "best_patch": {
-    "layer": 11,
-    "position": 4,
-    "token": " B",
-    "recovery": 6.350166320800781
+    "layer": 0,
+    "position": 9,
+    "token": " little",
+    "recovery": 1.0
   }
 }
