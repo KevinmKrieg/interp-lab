@@ -1,0 +1,15 @@
+{
+  "backend": "hf",
+  "clean_prompt": "A B C A B",
+  "corrupt_prompt": "A B C A D",
+  "correct_token": " C",
+  "incorrect_token": " D",
+  "clean_logit_diff": -0.48368072509765625,
+  "corrupt_logit_diff": -0.591400146484375,
+  "best_patch": {
+    "layer": 11,
+    "position": 4,
+    "token": " B",
+    "recovery": 6.350166320800781
+  }
+}

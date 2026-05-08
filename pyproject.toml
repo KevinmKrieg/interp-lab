@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "interp-lab"
+version = "0.1.0"
+description = "Mechanistic interpretability experiments for small transformer language models."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "matplotlib>=3.7",
+  "numpy>=1.24",
+  "pyyaml>=6.0",
+  "torch>=2.0",
+]
+
+[project.optional-dependencies]
+models = [
+  "transformers>=4.40",
+  "transformer-lens>=2.0",
+  "datasets>=2.16",
+]
+dev = [
+  "pytest>=8.0",
+]
+
+[project.scripts]
+collect-activations = "interp_lab.cli:collect_activations_main"
+run-patching = "interp_lab.cli:run_patching_main"
+train-sae = "interp_lab.cli:train_sae_main"
+analyze-features = "interp_lab.cli:analyze_features_main"
+train-nla-toy = "interp_lab.cli:train_nla_toy_main"
+serve-browser = "interp_lab.cli:serve_browser_main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

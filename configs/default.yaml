@@ -1,0 +1,21 @@
+seed: 7
+model:
+  backend: toy
+  n_layers: 6
+  d_model: 32
+  n_heads: 4
+data:
+  n_examples: 96
+  seq_len: 7
+  layer_for_sae: 3
+  clean_prompt: "A B C A B"
+  corrupt_prompt: "A B C A D"
+  correct_token: "C"
+  incorrect_token: "D"
+training:
+  sae_steps: 180
+  sae_features: 64
+  nla_steps: 160
+outputs:
+  artifacts_dir: artifacts
+  reports_dir: reports

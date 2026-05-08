@@ -1,0 +1,18 @@
+{
+  "mse": 2.1316823959350586,
+  "mean_cosine_similarity": 0.9289131164550781,
+  "random_text_cosine_baseline": 0.0011506002629175782,
+  "example": {
+    "prompt": "E A B E A X",
+    "position": 0,
+    "description": [
+      "feature: source-token-B",
+      "role: early-context"
+    ],
+    "model_description": [
+      "role: early-context",
+      "feature: source-token-D",
+      "feature: source-token-C"
+    ]
+  }
+}

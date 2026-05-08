@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+dist/
+build/
+*.egg-info/
+
+# Large experiment state is reproducible from configs and CLI commands.
+artifacts/*
+!artifacts/.gitkeep
+
+# Local server and plotting caches.
+.mplconfig/
+.cache/

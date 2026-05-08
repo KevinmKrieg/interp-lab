@@ -1,0 +1,18 @@
+{
+  "mse": 0.14135439693927765,
+  "mean_cosine_similarity": 0.9687614440917969,
+  "random_text_cosine_baseline": -0.0014984725276008248,
+  "example": {
+    "prompt": "A E F A E Z",
+    "position": 2,
+    "description": [
+      "feature: source-token-F",
+      "role: early-context"
+    ],
+    "model_description": [
+      "feature: source-token-F",
+      "role: early-context",
+      "role: copy-target-position"
+    ]
+  }
+}

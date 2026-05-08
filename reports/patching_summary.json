@@ -1,0 +1,15 @@
+{
+  "backend": "toy",
+  "clean_prompt": "A B C A B",
+  "corrupt_prompt": "A B C A D",
+  "correct_token": "C",
+  "incorrect_token": "D",
+  "clean_logit_diff": 50.87333679199219,
+  "corrupt_logit_diff": 18.2888126373291,
+  "best_patch": {
+    "layer": 5,
+    "position": 4,
+    "token": "B",
+    "recovery": 1.546445369720459
+  }
+}

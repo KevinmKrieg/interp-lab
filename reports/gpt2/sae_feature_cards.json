@@ -1,0 +1,628 @@
+{
+  "metrics": {
+    "mse": 0.06362439692020416,
+    "mean_l0": 8.0
+  },
+  "features": [
+    {
+      "feature_id": 55,
+      "label": " C-token residual feature",
+      "max_activation": 9.826287269592285,
+      "examples": [
+        {
+          "activation": 9.826287269592285,
+          "token": " C",
+          "position": 3,
+          "prompt": "C E B C E X"
+        },
+        {
+          "activation": 8.962759971618652,
+          "token": " C",
+          "position": 3,
+          "prompt": "C B D C B Z"
+        },
+        {
+          "activation": 8.510031700134277,
+          "token": " C",
+          "position": 2,
+          "prompt": "E B C E B Y"
+        },
+        {
+          "activation": 8.443605422973633,
+          "token": " C",
+          "position": 2,
+          "prompt": "D B C D B X"
+        }
+      ]
+    },
+    {
+      "feature_id": 15,
+      "label": " C-token residual feature",
+      "max_activation": 9.8245210647583,
+      "examples": [
+        {
+          "activation": 9.8245210647583,
+          "token": " C",
+          "position": 2,
+          "prompt": "B A C B A Z"
+        },
+        {
+          "activation": 9.773994445800781,
+          "token": " C",
+          "position": 4,
+          "prompt": "A C F A C X"
+        },
+        {
+          "activation": 9.773994445800781,
+          "token": " C",
+          "position": 4,
+          "prompt": "A C F A C X"
+        },
+        {
+          "activation": 9.191625595092773,
+          "token": " C",
+          "position": 4,
+          "prompt": "F C D F C Z"
+        }
+      ]
+    },
+    {
+      "feature_id": 52,
+      "label": " Z-token residual feature",
+      "max_activation": 9.323332786560059,
+      "examples": [
+        {
+          "activation": 9.323332786560059,
+          "token": " Z",
+          "position": 5,
+          "prompt": "D E C D E Z"
+        },
+        {
+          "activation": 8.95717716217041,
+          "token": " Z",
+          "position": 5,
+          "prompt": "F E A F E Z"
+        },
+        {
+          "activation": 8.850683212280273,
+          "token": " Z",
+          "position": 5,
+          "prompt": "D F A D F Z"
+        },
+        {
+          "activation": 8.733195304870605,
+          "token": " Z",
+          "position": 5,
+          "prompt": "E A B E A Z"
+        }
+      ]
+    },
+    {
+      "feature_id": 127,
+      "label": " A-token residual feature",
+      "max_activation": 9.0069580078125,
+      "examples": [
+        {
+          "activation": 9.0069580078125,
+          "token": " A",
+          "position": 2,
+          "prompt": "D F A D F X"
+        },
+        {
+          "activation": 9.0069580078125,
+          "token": " A",
+          "position": 2,
+          "prompt": "D F A D F Y"
+        },
+        {
+          "activation": 9.0069580078125,
+          "token": " A",
+          "position": 2,
+          "prompt": "D F A D F Z"
+        },
+        {
+          "activation": 8.733778953552246,
+          "token": " A",
+          "position": 3,
+          "prompt": "A D F A D X"
+        }
+      ]
+    },
+    {
+      "feature_id": 98,
+      "label": " C-token residual feature",
+      "max_activation": 8.760709762573242,
+      "examples": [
+        {
+          "activation": 8.760709762573242,
+          "token": " C",
+          "position": 2,
+          "prompt": "A E C A E Y"
+        },
+        {
+          "activation": 7.157318115234375,
+          "token": " C",
+          "position": 2,
+          "prompt": "D E C D E Z"
+        },
+        {
+          "activation": 6.4121623039245605,
+          "token": " D",
+          "position": 2,
+          "prompt": "F E D F E Y"
+        },
+        {
+          "activation": 6.4121623039245605,
+          "token": " D",
+          "position": 2,
+          "prompt": "F E D F E Y"
+        }
+      ]
+    },
+    {
+      "feature_id": 9,
+      "label": " E-token residual feature",
+      "max_activation": 8.122812271118164,
+      "examples": [
+        {
+          "activation": 8.122812271118164,
+          "token": " E",
+          "position": 3,
+          "prompt": "E F B E F Y"
+        },
+        {
+          "activation": 7.7771759033203125,
+          "token": " E",
+          "position": 3,
+          "prompt": "E A B E A Z"
+        },
+        {
+          "activation": 7.7771759033203125,
+          "token": " E",
+          "position": 3,
+          "prompt": "E A B E A X"
+        },
+        {
+          "activation": 7.191232681274414,
+          "token": " E",
+          "position": 2,
+          "prompt": "C B E C B Z"
+        }
+      ]
+    },
+    {
+      "feature_id": 76,
+      "label": " F-token residual feature",
+      "max_activation": 8.097808837890625,
+      "examples": [
+        {
+          "activation": 8.097808837890625,
+          "token": " F",
+          "position": 3,
+          "prompt": "F E D F E Y"
+        },
+        {
+          "activation": 8.097808837890625,
+          "token": " F",
+          "position": 3,
+          "prompt": "F E D F E Y"
+        },
+        {
+          "activation": 7.846519947052002,
+          "token": " F",
+          "position": 3,
+          "prompt": "F E A F E Z"
+        },
+        {
+          "activation": 7.846519947052002,
+          "token": " F",
+          "position": 3,
+          "prompt": "F E A F E Y"
+        }
+      ]
+    },
+    {
+      "feature_id": 72,
+      "label": " X-token residual feature",
+      "max_activation": 7.975720405578613,
+      "examples": [
+        {
+          "activation": 7.975720405578613,
+          "token": " X",
+          "position": 5,
+          "prompt": "C E F C E X"
+        },
+        {
+          "activation": 7.821445941925049,
+          "token": " X",
+          "position": 5,
+          "prompt": "C E B C E X"
+        },
+        {
+          "activation": 7.202848434448242,
+          "token": " X",
+          "position": 5,
+          "prompt": "E A B E A X"
+        },
+        {
+          "activation": 7.171252250671387,
+          "token": " X",
+          "position": 5,
+          "prompt": "E D A E D X"
+        }
+      ]
+    },
+    {
+      "feature_id": 46,
+      "label": " D-token residual feature",
+      "max_activation": 7.966526985168457,
+      "examples": [
+        {
+          "activation": 7.966526985168457,
+          "token": " D",
+          "position": 1,
+          "prompt": "E D A E D X"
+        },
+        {
+          "activation": 6.924696445465088,
+          "token": " D",
+          "position": 1,
+          "prompt": "F D A F D X"
+        },
+        {
+          "activation": 6.924696445465088,
+          "token": " D",
+          "position": 1,
+          "prompt": "F D C F D X"
+        },
+        {
+          "activation": 4.882619857788086,
+          "token": " D",
+          "position": 1,
+          "prompt": "A D F A D X"
+        }
+      ]
+    },
+    {
+      "feature_id": 13,
+      "label": " D-token residual feature",
+      "max_activation": 7.832326889038086,
+      "examples": [
+        {
+          "activation": 7.832326889038086,
+          "token": " D",
+          "position": 4,
+          "prompt": "F D C F D X"
+        },
+        {
+          "activation": 6.861815452575684,
+          "token": " D",
+          "position": 4,
+          "prompt": "F D A F D X"
+        },
+        {
+          "activation": 6.209862232208252,
+          "token": " F",
+          "position": 4,
+          "prompt": "D F C D F X"
+        },
+        {
+          "activation": 5.980843544006348,
+          "token": " A",
+          "position": 4,
+          "prompt": "D A E D A Z"
+        }
+      ]
+    },
+    {
+      "feature_id": 38,
+      "label": " F-token residual feature",
+      "max_activation": 7.7403435707092285,
+      "examples": [
+        {
+          "activation": 7.7403435707092285,
+          "token": " F",
+          "position": 2,
+          "prompt": "A C F A C X"
+        },
+        {
+          "activation": 7.7403435707092285,
+          "token": " F",
+          "position": 2,
+          "prompt": "A C F A C X"
+        },
+        {
+          "activation": 5.877962589263916,
+          "token": " F",
+          "position": 2,
+          "prompt": "B A F B A X"
+        },
+        {
+          "activation": 5.336613655090332,
+          "token": " F",
+          "position": 4,
+          "prompt": "B F A B F Y"
+        }
+      ]
+    },
+    {
+      "feature_id": 45,
+      "label": " A-token residual feature",
+      "max_activation": 7.723505020141602,
+      "examples": [
+        {
+          "activation": 7.723505020141602,
+          "token": " A",
+          "position": 3,
+          "prompt": "A E B A E Z"
+        },
+        {
+          "activation": 7.723505020141602,
+          "token": " A",
+          "position": 3,
+          "prompt": "A E B A E Y"
+        },
+        {
+          "activation": 7.723505020141602,
+          "token": " A",
+          "position": 3,
+          "prompt": "A E B A E Y"
+        },
+        {
+          "activation": 6.990734577178955,
+          "token": " A",
+          "position": 4,
+          "prompt": "B A F B A X"
+        }
+      ]
+    },
+    {
+      "feature_id": 77,
+      "label": " B-token residual feature",
+      "max_activation": 7.479898452758789,
+      "examples": [
+        {
+          "activation": 7.479898452758789,
+          "token": " B",
+          "position": 3,
+          "prompt": "B A D B A X"
+        },
+        {
+          "activation": 7.146505355834961,
+          "token": " B",
+          "position": 3,
+          "prompt": "B F A B F Y"
+        },
+        {
+          "activation": 7.1326470375061035,
+          "token": " B",
+          "position": 3,
+          "prompt": "B A F B A X"
+        },
+        {
+          "activation": 6.616942882537842,
+          "token": " B",
+          "position": 4,
+          "prompt": "D B A D B Z"
+        }
+      ]
+    },
+    {
+      "feature_id": 80,
+      "label": " E-token residual feature",
+      "max_activation": 7.469552516937256,
+      "examples": [
+        {
+          "activation": 7.469552516937256,
+          "token": " F",
+          "position": 4,
+          "prompt": "A F E A F Y"
+        },
+        {
+          "activation": 7.4430742263793945,
+          "token": " E",
+          "position": 4,
+          "prompt": "A E F A E Z"
+        },
+        {
+          "activation": 7.05359411239624,
+          "token": " E",
+          "position": 4,
+          "prompt": "A E B A E Y"
+        },
+        {
+          "activation": 7.05359411239624,
+          "token": " E",
+          "position": 4,
+          "prompt": "A E B A E Y"
+        }
+      ]
+    },
+    {
+      "feature_id": 40,
+      "label": " F-token residual feature",
+      "max_activation": 7.438124179840088,
+      "examples": [
+        {
+          "activation": 7.438124179840088,
+          "token": " F",
+          "position": 2,
+          "prompt": "B A F B A X"
+        },
+        {
+          "activation": 7.152876377105713,
+          "token": " F",
+          "position": 2,
+          "prompt": "E A F E A Z"
+        },
+        {
+          "activation": 6.918909072875977,
+          "token": " D",
+          "position": 2,
+          "prompt": "B A D B A X"
+        },
+        {
+          "activation": 6.690086841583252,
+          "token": " F",
+          "position": 1,
+          "prompt": "A F E A F Y"
+        }
+      ]
+    },
+    {
+      "feature_id": 104,
+      "label": " E-token residual feature",
+      "max_activation": 7.38079309463501,
+      "examples": [
+        {
+          "activation": 7.38079309463501,
+          "token": " E",
+          "position": 3,
+          "prompt": "E B C E B Y"
+        },
+        {
+          "activation": 7.293951511383057,
+          "token": " E",
+          "position": 3,
+          "prompt": "E A B E A X"
+        },
+        {
+          "activation": 7.293951511383057,
+          "token": " E",
+          "position": 3,
+          "prompt": "E A B E A Z"
+        },
+        {
+          "activation": 7.212636947631836,
+          "token": " E",
+          "position": 3,
+          "prompt": "E F B E F Y"
+        }
+      ]
+    },
+    {
+      "feature_id": 110,
+      "label": " D-token residual feature",
+      "max_activation": 7.364524841308594,
+      "examples": [
+        {
+          "activation": 7.364524841308594,
+          "token": " D",
+          "position": 2,
+          "prompt": "A B D A B Z"
+        },
+        {
+          "activation": 7.364524841308594,
+          "token": " D",
+          "position": 2,
+          "prompt": "A B D A B X"
+        },
+        {
+          "activation": 7.22476053237915,
+          "token": " D",
+          "position": 3,
+          "prompt": "D B A D B Z"
+        },
+        {
+          "activation": 7.220455169677734,
+          "token": " D",
+          "position": 2,
+          "prompt": "B A D B A X"
+        }
+      ]
+    },
+    {
+      "feature_id": 113,
+      "label": " F-token residual feature",
+      "max_activation": 7.3423871994018555,
+      "examples": [
+        {
+          "activation": 7.3423871994018555,
+          "token": " F",
+          "position": 1,
+          "prompt": "E F B E F Y"
+        },
+        {
+          "activation": 7.192431449890137,
+          "token": " F",
+          "position": 1,
+          "prompt": "B F A B F Y"
+        },
+        {
+          "activation": 6.9581098556518555,
+          "token": " F",
+          "position": 1,
+          "prompt": "D F A D F X"
+        },
+        {
+          "activation": 6.9581098556518555,
+          "token": " F",
+          "position": 1,
+          "prompt": "D F C D F X"
+        }
+      ]
+    },
+    {
+      "feature_id": 106,
+      "label": " A-token residual feature",
+      "max_activation": 7.256470203399658,
+      "examples": [
+        {
+          "activation": 7.256470203399658,
+          "token": " A",
+          "position": 3,
+          "prompt": "A E C A E Y"
+        },
+        {
+          "activation": 6.796369552612305,
+          "token": " A",
+          "position": 2,
+          "prompt": "E D A E D X"
+        },
+        {
+          "activation": 6.766724586486816,
+          "token": " A",
+          "position": 2,
+          "prompt": "F D A F D X"
+        },
+        {
+          "activation": 6.661813259124756,
+          "token": " A",
+          "position": 3,
+          "prompt": "A E F A E Z"
+        }
+      ]
+    },
+    {
+      "feature_id": 58,
+      "label": " A-token residual feature",
+      "max_activation": 7.1133928298950195,
+      "examples": [
+        {
+          "activation": 7.1133928298950195,
+          "token": " A",
+          "position": 3,
+          "prompt": "A D E A D X"
+        },
+        {
+          "activation": 6.782320022583008,
+          "token": " A",
+          "position": 4,
+          "prompt": "E A F E A Z"
+        },
+        {
+          "activation": 6.737181663513184,
+          "token": " A",
+          "position": 3,
+          "prompt": "A F E A F Y"
+        },
+        {
+          "activation": 5.623565196990967,
+          "token": " A",
+          "position": 4,
+          "prompt": "E A B E A Z"
+        }
+      ]
+    }
+  ]
+}
