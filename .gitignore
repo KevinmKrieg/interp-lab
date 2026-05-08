@@ -15,3 +15,4 @@ artifacts/*
 # Local server and plotting caches.
 .mplconfig/
 .cache/
+.kiro/hooks/track-with-agent.kiro.hook
