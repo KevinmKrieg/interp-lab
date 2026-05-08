@@ -16,7 +16,7 @@ The GPT-2 backend runs a small repeated-text prompt batch and patches residual-s
 
 ![GPT-2 activation patching heatmap](reports/gpt2/assets/patching_heatmap.png)
 
-See the generated writeup at [`reports/gpt2/patching_case_study.md`](reports/gpt2/patching_case_study.md), with companion feature and NLA cards in [`reports/gpt2/`](reports/gpt2/).
+See the interactive report browser at [`reports/gpt2/index.html`](reports/gpt2/index.html), with the generated writeup at [`reports/gpt2/patching_case_study.md`](reports/gpt2/patching_case_study.md).
 
 ## Quickstart: Toy Smoke Path
 
@@ -59,6 +59,12 @@ serve-browser --config configs/gpt2_induction.yaml --build-only
 
 The GPT-2 heatmap shows logit-difference recovery for the strongest case in the current repeated-text prompt batch. Aggregate metrics are saved in [`reports/gpt2/patching_summary.json`](reports/gpt2/patching_summary.json).
 
+### Interactive SAE browser
+
+![SAE feature browser](reports/gpt2/assets/sae_feature_histogram.png)
+
+The generated browser at [`reports/gpt2/index.html`](reports/gpt2/index.html) includes searchable and sortable SAE feature cards backed by [`reports/gpt2/sae_feature_cards.json`](reports/gpt2/sae_feature_cards.json).
+
 ### Toy activation patching
 
 ![Activation patching heatmap](reports/assets/patching_heatmap.png)
@@ -99,7 +105,7 @@ The NLA-inspired module maps an activation to constrained text labels, then reco
 | Artifact | What it demonstrates | Output |
 | --- | --- | --- |
 | GPT-2 patching heatmap | Real-model causal localization over repeated-text prompts | `reports/gpt2/assets/patching_heatmap.png` |
-| GPT-2 SAE cards | Sparse features with top activating contexts | `reports/gpt2/sae_feature_cards.md` |
+| GPT-2 SAE browser | Searchable sparse feature cards with top activating contexts | `reports/gpt2/index.html` |
 | GPT-2 tiny NLA card | Human-readable activation bottleneck and reconstruction metric | `reports/gpt2/nla_toy_card.md` |
 | Toy smoke reports | Fully local, deterministic CI path | `reports/index.html` |
 
