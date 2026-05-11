@@ -10,6 +10,21 @@
   "corrupt_logit_diff": 18.2888126373291,
   "mean_best_patch_recovery": 1.546445369720459,
   "median_best_patch_recovery": 1.546445369720459,
+  "mean_heatmap": "assets/patching_heatmap_mean.png",
+  "cases": [
+    {
+      "clean_prompt": "A B C A B",
+      "corrupt_prompt": "A B C A D",
+      "correct_token": "C",
+      "incorrect_token": "D",
+      "clean_logit_diff": 50.87333679199219,
+      "corrupt_logit_diff": 18.2888126373291,
+      "best_layer": 5,
+      "best_position": 4,
+      "best_token": "B",
+      "best_recovery": 1.546445369720459
+    }
+  ],
   "skipped_cases": [],
   "best_patch": {
     "layer": 5,

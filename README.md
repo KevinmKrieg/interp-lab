@@ -12,7 +12,7 @@ The NLA module is an inspired toy replica, not a reproduction of Anthropic's RL-
 
 ## Key Result
 
-The GPT-2 backend runs a small repeated-text prompt batch and patches residual-stream activations from clean prompts into corrupted prompts. The current checked-in run finds a residual-stream site that restores the clean target-token preference.
+The GPT-2 backend runs a small repeated-text prompt batch and patches residual-stream activations from clean prompts into corrupted prompts. The checked-in report includes both a hero-case patching heatmap and an aggregate recovery heatmap across valid cases.
 
 ![GPT-2 activation patching heatmap](reports/gpt2/assets/patching_heatmap.png)
 
@@ -59,6 +59,10 @@ serve-browser --config configs/gpt2_induction.yaml --build-only
 
 The GPT-2 heatmap shows logit-difference recovery for the strongest case in the current repeated-text prompt batch. Aggregate metrics are saved in [`reports/gpt2/patching_summary.json`](reports/gpt2/patching_summary.json).
 
+![GPT-2 mean activation patching heatmap](reports/gpt2/assets/patching_heatmap_mean.png)
+
+The aggregate heatmap averages patching recovery across all valid clean/corrupt cases. The browser also includes a per-case table and skipped-case list for transparency.
+
 ### Interactive SAE browser
 
 ![SAE feature browser](reports/gpt2/assets/sae_feature_histogram.png)
@@ -104,7 +108,7 @@ The NLA-inspired module maps an activation to constrained text labels, then reco
 
 | Artifact | What it demonstrates | Output |
 | --- | --- | --- |
-| GPT-2 patching heatmap | Real-model causal localization over repeated-text prompts | `reports/gpt2/assets/patching_heatmap.png` |
+| GPT-2 patching heatmaps | Hero and aggregate causal localization over repeated-text prompts | `reports/gpt2/index.html` |
 | GPT-2 SAE browser | Searchable sparse feature cards with top activating contexts | `reports/gpt2/index.html` |
 | GPT-2 tiny NLA card | Human-readable activation bottleneck and reconstruction metric | `reports/gpt2/nla_toy_card.md` |
 | Toy smoke reports | Fully local, deterministic CI path | `reports/index.html` |

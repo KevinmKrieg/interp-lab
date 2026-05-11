@@ -69,6 +69,10 @@ def build_browser(reports_dir: str | Path) -> Path:
     .metric strong {{ display: block; font-size: 24px; line-height: 1.1; margin-top: 4px; }}
     .metric span {{ color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }}
     img {{ width: 100%; border: 1px solid var(--line); border-radius: 6px; background: #fff; }}
+    table {{ width: 100%; border-collapse: collapse; font-size: 14px; }}
+    th, td {{ border-bottom: 1px solid var(--line); padding: 9px 8px; text-align: left; vertical-align: top; }}
+    th {{ color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }}
+    td.numeric, th.numeric {{ text-align: right; }}
     .toolbar {{ display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }}
     input, select {{
       border: 1px solid var(--line);
@@ -89,6 +93,7 @@ def build_browser(reports_dir: str | Path) -> Path:
     code {{ background: var(--soft); border-radius: 5px; padding: 2px 5px; }}
     .links {{ display: flex; gap: 14px; flex-wrap: wrap; margin-top: 12px; }}
     .empty {{ color: var(--muted); padding: 14px; border: 1px dashed var(--line); border-radius: 8px; }}
+    .scroll {{ overflow-x: auto; }}
     @media (max-width: 840px) {{
       header {{ display: block; }}
       .hero, .side, .half, .third {{ grid-column: 1 / -1; }}
@@ -108,7 +113,7 @@ def build_browser(reports_dir: str | Path) -> Path:
 
   <section class="grid">
     <article class="panel hero">
-      <h2>Activation Patching</h2>
+      <h2>Hero Patching Case</h2>
       <img src="assets/patching_heatmap.png" alt="Activation patching heatmap">
       <div class="links">
         <a href="patching_case_study.md">case study</a>
@@ -127,9 +132,21 @@ def build_browser(reports_dir: str | Path) -> Path:
     </aside>
 
     <article class="panel half">
+      <h2>Aggregate Patching</h2>
+      <img src="assets/patching_heatmap_mean.png" alt="Mean activation patching heatmap">
+      <p style="margin-top:12px;">Mean recovery across valid clean/corrupt cases, with variable-length prompts averaged by token position.</p>
+    </article>
+
+    <article class="panel half">
       <h2>Attention Pattern</h2>
       <img src="assets/attention_pattern.png" alt="Attention pattern">
     </article>
+    <article class="panel full">
+      <h2>Patching Case Table</h2>
+      <div id="case-table" class="scroll"></div>
+      <div id="skipped-cases" style="margin-top:14px;"></div>
+    </article>
+
     <article class="panel half">
       <h2>NLA Bottleneck</h2>
       <img src="assets/nla_reconstruction.png" alt="NLA reconstruction comparison">
@@ -178,6 +195,45 @@ def build_browser(reports_dir: str | Path) -> Path:
   document.getElementById("patch-copy").innerHTML = patching.clean_prompt
     ? `Clean <code>${{patching.clean_prompt}}</code><br>Corrupt <code>${{patching.corrupt_prompt}}</code>`
     : "Run patching to populate this section.";
+
+  function renderCaseTable() {{
+    const cases = patching.cases || [];
+    const table = document.getElementById("case-table");
+    if (!cases.length) {{
+      table.innerHTML = '<div class="empty">Run patching to populate case-level metrics.</div>';
+    }} else {{
+      table.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Clean prompt</th>
+              <th>Corrupt prompt</th>
+              <th class="numeric">Clean diff</th>
+              <th class="numeric">Corrupt diff</th>
+              <th>Best site</th>
+              <th class="numeric">Recovery</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${{cases.map(row => `
+              <tr>
+                <td><code>${{row.clean_prompt}}</code></td>
+                <td><code>${{row.corrupt_prompt}}</code></td>
+                <td class="numeric">${{fmt(row.clean_logit_diff)}}</td>
+                <td class="numeric">${{fmt(row.corrupt_logit_diff)}}</td>
+                <td>L${{row.best_layer}} P${{row.best_position}} <code>${{row.best_token}}</code></td>
+                <td class="numeric">${{fmt(row.best_recovery)}}</td>
+              </tr>
+            `).join("")}}
+          </tbody>
+        </table>
+      `;
+    }}
+    const skipped = patching.skipped_cases || [];
+    document.getElementById("skipped-cases").innerHTML = skipped.length
+      ? `<h3>Skipped cases</h3>${{skipped.map(row => `<p><code>${{row.clean_prompt}}</code>: ${{row.reason}}</p>`).join("")}}`
+      : "";
+  }}
 
   document.getElementById("metric-nla-cos").textContent = fmt(nla.mean_cosine_similarity, 3);
   document.getElementById("metric-nla-base").textContent = fmt(nla.random_text_cosine_baseline, 3);
@@ -237,6 +293,7 @@ def build_browser(reports_dir: str | Path) -> Path:
 
   search.addEventListener("input", renderFeatures);
   sort.addEventListener("change", renderFeatures);
+  renderCaseTable();
   renderFeatures();
 </script>
 </body>

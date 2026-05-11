@@ -44,6 +44,10 @@
     .metric strong { display: block; font-size: 24px; line-height: 1.1; margin-top: 4px; }
     .metric span { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
     img { width: 100%; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { border-bottom: 1px solid var(--line); padding: 9px 8px; text-align: left; vertical-align: top; }
+    th { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+    td.numeric, th.numeric { text-align: right; }
     .toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
     input, select {
       border: 1px solid var(--line);
@@ -64,6 +68,7 @@
     code { background: var(--soft); border-radius: 5px; padding: 2px 5px; }
     .links { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 12px; }
     .empty { color: var(--muted); padding: 14px; border: 1px dashed var(--line); border-radius: 8px; }
+    .scroll { overflow-x: auto; }
     @media (max-width: 840px) {
       header { display: block; }
       .hero, .side, .half, .third { grid-column: 1 / -1; }
@@ -83,7 +88,7 @@
 
   <section class="grid">
     <article class="panel hero">
-      <h2>Activation Patching</h2>
+      <h2>Hero Patching Case</h2>
       <img src="assets/patching_heatmap.png" alt="Activation patching heatmap">
       <div class="links">
         <a href="patching_case_study.md">case study</a>
@@ -102,9 +107,21 @@
     </aside>
 
     <article class="panel half">
+      <h2>Aggregate Patching</h2>
+      <img src="assets/patching_heatmap_mean.png" alt="Mean activation patching heatmap">
+      <p style="margin-top:12px;">Mean recovery across valid clean/corrupt cases, with variable-length prompts averaged by token position.</p>
+    </article>
+
+    <article class="panel half">
       <h2>Attention Pattern</h2>
       <img src="assets/attention_pattern.png" alt="Attention pattern">
     </article>
+    <article class="panel full">
+      <h2>Patching Case Table</h2>
+      <div id="case-table" class="scroll"></div>
+      <div id="skipped-cases" style="margin-top:14px;"></div>
+    </article>
+
     <article class="panel half">
       <h2>NLA Bottleneck</h2>
       <img src="assets/nla_reconstruction.png" alt="NLA reconstruction comparison">
@@ -137,7 +154,7 @@
     </section>
   </section>
 </main>
-<script type="application/json" id="patching-data">{"backend": "toy", "n_cases": 1, "n_skipped_cases": 0, "clean_prompt": "A B C A B", "corrupt_prompt": "A B C A D", "correct_token": "C", "incorrect_token": "D", "clean_logit_diff": 50.87333679199219, "corrupt_logit_diff": 18.2888126373291, "mean_best_patch_recovery": 1.546445369720459, "median_best_patch_recovery": 1.546445369720459, "skipped_cases": [], "best_patch": {"layer": 5, "position": 4, "token": "B", "recovery": 1.546445369720459}}</script>
+<script type="application/json" id="patching-data">{"backend": "toy", "n_cases": 1, "n_skipped_cases": 0, "clean_prompt": "A B C A B", "corrupt_prompt": "A B C A D", "correct_token": "C", "incorrect_token": "D", "clean_logit_diff": 50.87333679199219, "corrupt_logit_diff": 18.2888126373291, "mean_best_patch_recovery": 1.546445369720459, "median_best_patch_recovery": 1.546445369720459, "mean_heatmap": "assets/patching_heatmap_mean.png", "cases": [{"clean_prompt": "A B C A B", "corrupt_prompt": "A B C A D", "correct_token": "C", "incorrect_token": "D", "clean_logit_diff": 50.87333679199219, "corrupt_logit_diff": 18.2888126373291, "best_layer": 5, "best_position": 4, "best_token": "B", "best_recovery": 1.546445369720459}], "skipped_cases": [], "best_patch": {"layer": 5, "position": 4, "token": "B", "recovery": 1.546445369720459}}</script>
 <script type="application/json" id="sae-data">{"metrics": {"mse": 0.014710159972310066, "mean_l0": 8.0}, "features": [{"feature_id": 57, "label": "F-token residual feature", "max_activation": 5.5555219650268555, "examples": [{"activation": 5.5555219650268555, "token": "F", "position": 2, "prompt": "D C F D C Y"}, {"activation": 5.5555219650268555, "token": "F", "position": 2, "prompt": "E A F E A Z"}, {"activation": 5.5555219650268555, "token": "F", "position": 2, "prompt": "D E F D E Y"}, {"activation": 5.5555219650268555, "token": "F", "position": 2, "prompt": "A E F A E Z"}]}, {"feature_id": 39, "label": "F-token residual feature", "max_activation": 5.245632648468018, "examples": [{"activation": 5.245632648468018, "token": "F", "position": 2, "prompt": "D E F D E Y"}, {"activation": 5.245632648468018, "token": "F", "position": 2, "prompt": "E A F E A Z"}, {"activation": 5.245632648468018, "token": "F", "position": 2, "prompt": "D C F D C Y"}, {"activation": 5.245632648468018, "token": "F", "position": 2, "prompt": "A E F A E Z"}]}, {"feature_id": 31, "label": "C-token residual feature", "max_activation": 5.166741371154785, "examples": [{"activation": 5.166741371154785, "token": "C", "position": 2, "prompt": "D B C D B X"}, {"activation": 5.166741371154785, "token": "C", "position": 2, "prompt": "F D C F D X"}, {"activation": 5.166741371154785, "token": "C", "position": 2, "prompt": "A E C A E Y"}, {"activation": 5.166741371154785, "token": "C", "position": 2, "prompt": "B A C B A Z"}]}, {"feature_id": 22, "label": "B-token residual feature", "max_activation": 4.9858503341674805, "examples": [{"activation": 4.9858503341674805, "token": "B", "position": 2, "prompt": "E A B E A X"}, {"activation": 4.9858503341674805, "token": "B", "position": 2, "prompt": "C E B C E X"}, {"activation": 4.9858503341674805, "token": "B", "position": 2, "prompt": "A E B A E Y"}, {"activation": 4.9858503341674805, "token": "B", "position": 2, "prompt": "E A B E A Z"}]}, {"feature_id": 35, "label": "D-token residual feature", "max_activation": 4.832417011260986, "examples": [{"activation": 4.832417011260986, "token": "D", "position": 2, "prompt": "C B D C B Z"}, {"activation": 4.832417011260986, "token": "D", "position": 2, "prompt": "F C D F C Z"}, {"activation": 4.832417011260986, "token": "D", "position": 2, "prompt": "F E D F E Y"}, {"activation": 4.832417011260986, "token": "D", "position": 2, "prompt": "B A D B A X"}]}, {"feature_id": 1, "label": "F-token residual feature", "max_activation": 4.68166446685791, "examples": [{"activation": 4.68166446685791, "token": "F", "position": 2, "prompt": "D C F D C Y"}, {"activation": 4.68166446685791, "token": "F", "position": 2, "prompt": "E A F E A Z"}, {"activation": 4.68166446685791, "token": "F", "position": 2, "prompt": "D E F D E Y"}, {"activation": 4.68166446685791, "token": "F", "position": 2, "prompt": "A E F A E Z"}]}, {"feature_id": 25, "label": "B-token residual feature", "max_activation": 4.635623931884766, "examples": [{"activation": 4.635623931884766, "token": "B", "position": 2, "prompt": "E A B E A X"}, {"activation": 4.635623931884766, "token": "B", "position": 2, "prompt": "C E B C E X"}, {"activation": 4.635623931884766, "token": "B", "position": 2, "prompt": "A E B A E Y"}, {"activation": 4.635623931884766, "token": "B", "position": 2, "prompt": "E A B E A Z"}]}, {"feature_id": 19, "label": "Y-token residual feature", "max_activation": 4.579689025878906, "examples": [{"activation": 4.579689025878906, "token": "Y", "position": 5, "prompt": "F E C F E Y"}, {"activation": 4.579689025878906, "token": "Y", "position": 5, "prompt": "E B C E B Y"}, {"activation": 4.579689025878906, "token": "Y", "position": 5, "prompt": "A E C A E Y"}, {"activation": 4.275956153869629, "token": "Y", "position": 5, "prompt": "D E F D E Y"}]}, {"feature_id": 47, "label": "Y-token residual feature", "max_activation": 4.507455825805664, "examples": [{"activation": 4.507455825805664, "token": "Y", "position": 5, "prompt": "E F B E F Y"}, {"activation": 4.507455825805664, "token": "Y", "position": 5, "prompt": "A D B A D Y"}, {"activation": 4.507455825805664, "token": "Y", "position": 5, "prompt": "A E B A E Y"}, {"activation": 4.507455825805664, "token": "Y", "position": 5, "prompt": "A E B A E Y"}]}, {"feature_id": 56, "label": "X-token residual feature", "max_activation": 4.358705043792725, "examples": [{"activation": 4.358705043792725, "token": "X", "position": 5, "prompt": "F D A F D X"}, {"activation": 4.358705043792725, "token": "X", "position": 5, "prompt": "C D A C D X"}, {"activation": 4.358705043792725, "token": "X", "position": 5, "prompt": "D F A D F X"}, {"activation": 4.358705043792725, "token": "X", "position": 5, "prompt": "E D A E D X"}]}, {"feature_id": 2, "label": "Z-token residual feature", "max_activation": 4.335578441619873, "examples": [{"activation": 4.335578441619873, "token": "Z", "position": 5, "prompt": "C B F C B Z"}, {"activation": 4.335578441619873, "token": "Z", "position": 5, "prompt": "B A F B A Z"}, {"activation": 4.335578441619873, "token": "Z", "position": 5, "prompt": "E A F E A Z"}, {"activation": 4.335578441619873, "token": "Z", "position": 5, "prompt": "A E F A E Z"}]}, {"feature_id": 54, "label": "E-token residual feature", "max_activation": 4.3176140785217285, "examples": [{"activation": 4.3176140785217285, "token": "E", "position": 2, "prompt": "A D E A D X"}, {"activation": 4.3176140785217285, "token": "E", "position": 2, "prompt": "D A E D A Y"}, {"activation": 4.3176140785217285, "token": "E", "position": 2, "prompt": "C B E C B Z"}, {"activation": 4.3176140785217285, "token": "E", "position": 2, "prompt": "A F E A F Y"}]}, {"feature_id": 36, "label": "E-token residual feature", "max_activation": 4.25583028793335, "examples": [{"activation": 4.25583028793335, "token": "E", "position": 2, "prompt": "A D E A D X"}, {"activation": 4.25583028793335, "token": "E", "position": 2, "prompt": "D A E D A Y"}, {"activation": 4.25583028793335, "token": "E", "position": 2, "prompt": "C B E C B Z"}, {"activation": 4.25583028793335, "token": "E", "position": 2, "prompt": "A F E A F Y"}]}, {"feature_id": 55, "label": "Y-token residual feature", "max_activation": 4.089808940887451, "examples": [{"activation": 4.089808940887451, "token": "Y", "position": 5, "prompt": "F E C F E Y"}, {"activation": 4.089808940887451, "token": "Y", "position": 5, "prompt": "E B C E B Y"}, {"activation": 4.089808940887451, "token": "Y", "position": 5, "prompt": "A E C A E Y"}, {"activation": 3.818532943725586, "token": "C", "position": 2, "prompt": "D B C D B X"}]}, {"feature_id": 3, "label": "X-token residual feature", "max_activation": 4.0844502449035645, "examples": [{"activation": 4.0844502449035645, "token": "X", "position": 5, "prompt": "E D A E D X"}, {"activation": 4.0844502449035645, "token": "X", "position": 5, "prompt": "C D A C D X"}, {"activation": 4.0844502449035645, "token": "X", "position": 5, "prompt": "F D A F D X"}, {"activation": 4.0844502449035645, "token": "X", "position": 5, "prompt": "D F A D F X"}]}, {"feature_id": 38, "label": "C-token residual feature", "max_activation": 4.068996429443359, "examples": [{"activation": 4.068996429443359, "token": "C", "position": 2, "prompt": "D B C D B X"}, {"activation": 4.068996429443359, "token": "C", "position": 2, "prompt": "F D C F D X"}, {"activation": 4.068996429443359, "token": "C", "position": 2, "prompt": "A E C A E Y"}, {"activation": 4.068996429443359, "token": "C", "position": 2, "prompt": "B A C B A Z"}]}, {"feature_id": 45, "label": "A-token residual feature", "max_activation": 4.011637210845947, "examples": [{"activation": 4.011637210845947, "token": "A", "position": 2, "prompt": "F E A F E Z"}, {"activation": 4.011637210845947, "token": "A", "position": 2, "prompt": "D F A D F Z"}, {"activation": 4.011637210845947, "token": "A", "position": 2, "prompt": "D B A D B Z"}, {"activation": 4.011637210845947, "token": "A", "position": 2, "prompt": "E D A E D X"}]}, {"feature_id": 12, "label": "Y-token residual feature", "max_activation": 3.8990862369537354, "examples": [{"activation": 3.8990862369537354, "token": "Y", "position": 5, "prompt": "F C D F C Y"}, {"activation": 3.8990862369537354, "token": "Y", "position": 5, "prompt": "F E D F E Y"}, {"activation": 3.8990862369537354, "token": "Y", "position": 5, "prompt": "F E D F E Y"}, {"activation": 3.565373182296753, "token": "X", "position": 5, "prompt": "B A D B A X"}]}, {"feature_id": 5, "label": "D-token residual feature", "max_activation": 3.832770586013794, "examples": [{"activation": 3.832770586013794, "token": "D", "position": 2, "prompt": "C B D C B Z"}, {"activation": 3.832770586013794, "token": "D", "position": 2, "prompt": "F C D F C Z"}, {"activation": 3.832770586013794, "token": "D", "position": 2, "prompt": "F E D F E Y"}, {"activation": 3.832770586013794, "token": "D", "position": 2, "prompt": "B A D B A X"}]}, {"feature_id": 6, "label": "E-token residual feature", "max_activation": 3.7391412258148193, "examples": [{"activation": 3.7391412258148193, "token": "E", "position": 2, "prompt": "A D E A D X"}, {"activation": 3.7391412258148193, "token": "E", "position": 2, "prompt": "D A E D A Y"}, {"activation": 3.7391412258148193, "token": "E", "position": 2, "prompt": "C B E C B Z"}, {"activation": 3.7391412258148193, "token": "E", "position": 2, "prompt": "A F E A F Y"}]}]}</script>
 <script type="application/json" id="nla-data">{"mse": 0.14135439693927765, "mean_cosine_similarity": 0.9687614440917969, "random_text_cosine_baseline": -0.0014984725276008248, "example": {"prompt": "A E F A E Z", "position": 2, "description": ["feature: source-token-F", "role: early-context"], "model_description": ["feature: source-token-F", "role: early-context", "role: copy-target-position"]}}</script>
 <script>
@@ -153,6 +170,45 @@
   document.getElementById("patch-copy").innerHTML = patching.clean_prompt
     ? `Clean <code>${patching.clean_prompt}</code><br>Corrupt <code>${patching.corrupt_prompt}</code>`
     : "Run patching to populate this section.";
+
+  function renderCaseTable() {
+    const cases = patching.cases || [];
+    const table = document.getElementById("case-table");
+    if (!cases.length) {
+      table.innerHTML = '<div class="empty">Run patching to populate case-level metrics.</div>';
+    } else {
+      table.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Clean prompt</th>
+              <th>Corrupt prompt</th>
+              <th class="numeric">Clean diff</th>
+              <th class="numeric">Corrupt diff</th>
+              <th>Best site</th>
+              <th class="numeric">Recovery</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${cases.map(row => `
+              <tr>
+                <td><code>${row.clean_prompt}</code></td>
+                <td><code>${row.corrupt_prompt}</code></td>
+                <td class="numeric">${fmt(row.clean_logit_diff)}</td>
+                <td class="numeric">${fmt(row.corrupt_logit_diff)}</td>
+                <td>L${row.best_layer} P${row.best_position} <code>${row.best_token}</code></td>
+                <td class="numeric">${fmt(row.best_recovery)}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      `;
+    }
+    const skipped = patching.skipped_cases || [];
+    document.getElementById("skipped-cases").innerHTML = skipped.length
+      ? `<h3>Skipped cases</h3>${skipped.map(row => `<p><code>${row.clean_prompt}</code>: ${row.reason}</p>`).join("")}`
+      : "";
+  }
 
   document.getElementById("metric-nla-cos").textContent = fmt(nla.mean_cosine_similarity, 3);
   document.getElementById("metric-nla-base").textContent = fmt(nla.random_text_cosine_baseline, 3);
@@ -212,6 +268,7 @@
 
   search.addEventListener("input", renderFeatures);
   sort.addEventListener("change", renderFeatures);
+  renderCaseTable();
   renderFeatures();
 </script>
 </body>
